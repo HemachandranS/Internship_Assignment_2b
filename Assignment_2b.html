@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #21344D;
+        color:#eee9e6;
+        
+      }
+      .description{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+
+</head>
+<body>
+  <div class="description">
+  <h1>Internship Assignment 2.b</h1>
+   <h2></h2>
+   <h3> Many websites are refusing to connect in iframe so here are few website urls which are working fine. Copy and append these links to this page url. </h3>
+   <h4>?iframe_url=https://chat.openai.com/?model=text-davinci-002-render-sha</h4>
+   <h4>?iframe_url=https://spacenos.com/</h4>
+  </div>
+</body>
+
+
+<script type="text/javascript">
+ 
+function injectIframe(url) {
+  
+  const iframe = document.createElement('iframe');
+  iframe.src = url;
+  iframe.style.cssText = `
+    position: relative;
+    width: 50%;
+    height: 50%;
+    border: none;
+    z-index: 9999;
+  `;
+  
+  document.body.appendChild(iframe);
+  
+
+  const closeButton = document.createElement('button');
+  closeButton.textContent = 'Close iFrame';
+  closeButton.style.cssText = `
+    position: absolute;
+    top:70%;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10000;
+  `;
+  
+  closeButton.addEventListener('click', () => {
+    iframe.remove();
+    closeButton.remove();
+  });
+  document.body.appendChild(closeButton);
+}
+
+// Check if the current URL has the iframe_url parameter
+const urlParams = new URLSearchParams(window.location.search);
+const iframeUrl = urlParams.get('iframe_url');
+if (iframeUrl) {
+  injectIframe(iframeUrl);
+}
+</script>
+
+</html>
